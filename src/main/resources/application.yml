@@ -26,7 +26,7 @@ spring:
     defer-datasource-initialization: true
 
 server:
-  port: 9000
+  port: 9001
 
 logging:
   level:
