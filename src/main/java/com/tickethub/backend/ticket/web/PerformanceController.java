@@ -26,7 +26,7 @@ public class PerformanceController {
 
     // 공연 단건 조회 정보
     @GetMapping("/{performanceId}")
-    public PerformanceDto getPerformance(@PathVariable Long performanceId) {
+    public PerformanceDto getPerformance(@PathVariable(name="performanceId") Long performanceId) {
         return performanceService.getPerformance(performanceId);
     }
 }
