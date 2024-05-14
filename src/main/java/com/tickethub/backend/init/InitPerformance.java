@@ -20,7 +20,7 @@ public class InitPerformance {
     @PostConstruct
     public void initPerformance() {
         Performance performanceA = Performance.builder()
-                .name("송가인 2024 가인 디너 콘서트")
+                .name("송가인인 2024 가인 디너 콘서트")
                 .viewingHours(2)
                 .date(LocalDate.of(2024, 5, 1))
                 .location("그랜드 하얏트 호텔")
