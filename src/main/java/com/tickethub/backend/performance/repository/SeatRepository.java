@@ -1,10 +1,10 @@
 package com.tickethub.backend.performance.repository;
 
-import com.tickethub.backend.performance.persist.Seat;
+import com.tickethub.backend.performance.persist.SeatEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SeatRepository extends JpaRepository<Seat, Long> {
-    List<Seat> findByPerformance_PerformanceId(Long performanceId);
+public interface SeatRepository extends JpaRepository<SeatEntity, Long> {
+    List<SeatEntity> findByPerformance_PerformanceId(Long performanceId);
 }

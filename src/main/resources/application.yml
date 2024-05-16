@@ -23,3 +23,7 @@ spring:
     properties:
       hibernate.format_sql: true
       dialect: org.hibernate.dialect.MySQL8InnoDBDialect
+
+token:
+  expiration_time: 86400000
+  secret: lakufhwkuhfkjsdfhu2387yr73hr13o873878y374y1wlkugwkehsggiqlei8374679kuhwuefjswhehbneklcoufyyey38r949TERGTTAFSfskfgwelskjfgsfaghsullau2837ryhsd

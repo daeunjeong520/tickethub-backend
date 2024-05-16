@@ -1,6 +1,6 @@
 package com.tickethub.backend.performance.service;
 
-import com.tickethub.backend.performance.persist.Performance;
+import com.tickethub.backend.performance.persist.PerformanceEntity;
 import com.tickethub.backend.performance.dto.PerformanceDto;
 import com.tickethub.backend.performance.repository.PerformanceRepository;
 import com.tickethub.backend.performance.repository.SeatRepository;
@@ -31,7 +31,7 @@ public class PerformanceServiceImpl implements PerformanceService{
 
     // 공연 단건 조회
     public PerformanceDto getPerformance(Long performanceId) {
-        Performance performance = performanceRepository.findById(performanceId)
+        PerformanceEntity performance = performanceRepository.findById(performanceId)
                 .orElseThrow(() -> new IllegalArgumentException("Not Found Performance"));
 
         return PerformanceDto.from(performance);

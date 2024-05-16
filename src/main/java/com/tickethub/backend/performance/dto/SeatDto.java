@@ -1,6 +1,6 @@
 package com.tickethub.backend.performance.dto;
 
-import com.tickethub.backend.performance.persist.Seat;
+import com.tickethub.backend.performance.persist.SeatEntity;
 import lombok.*;
 
 @Getter
@@ -15,7 +15,7 @@ public class SeatDto {
     private Integer totalSeat; // 좌석 총 개수
     private Integer price; // 좌석 가격
 
-    public static SeatDto from(Seat seat) {
+    public static SeatDto from(SeatEntity seat) {
         return SeatDto.builder()
                 .seatId(seat.getSeatId())
                 .seatType(seat.getSeatType())

@@ -1,6 +1,6 @@
 package com.tickethub.backend.performance.dto;
 
-import com.tickethub.backend.performance.persist.Performance;
+import com.tickethub.backend.performance.persist.PerformanceEntity;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -24,7 +24,7 @@ public class PerformanceDto {
     private List<SeatDto> seats;     // 좌석 정보
 
     // entity -> dto
-    public static PerformanceDto from(Performance performance) {
+    public static PerformanceDto from(PerformanceEntity performance) {
         return PerformanceDto.builder()
                 .performanceId(performance.getPerformanceId())
                 .name(performance.getName())

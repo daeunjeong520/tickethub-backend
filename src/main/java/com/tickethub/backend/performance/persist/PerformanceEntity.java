@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "performance")
-public class Performance implements Serializable {
+public class PerformanceEntity implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "performance_id")
@@ -42,5 +42,5 @@ public class Performance implements Serializable {
     private String posterPath;       // 이미지 경로
 
     @OneToMany(mappedBy = "performance")
-    private List<Seat> seats = new ArrayList<>();
+    private List<SeatEntity> seats = new ArrayList<>();
 }
