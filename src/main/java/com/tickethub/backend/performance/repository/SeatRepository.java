@@ -1,6 +1,6 @@
-package com.tickethub.backend.ticket.repository;
+package com.tickethub.backend.performance.repository;
 
-import com.tickethub.backend.ticket.domain.Seat;
+import com.tickethub.backend.performance.persist.Seat;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

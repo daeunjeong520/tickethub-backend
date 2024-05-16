@@ -1,11 +1,9 @@
-package com.tickethub.backend.ticket.service;
+package com.tickethub.backend.performance.service;
 
-import com.tickethub.backend.ticket.domain.Performance;
-import com.tickethub.backend.ticket.domain.Seat;
-import com.tickethub.backend.ticket.dto.PerformanceDto;
-import com.tickethub.backend.ticket.dto.SeatDto;
-import com.tickethub.backend.ticket.repository.PerformanceRepository;
-import com.tickethub.backend.ticket.repository.SeatRepository;
+import com.tickethub.backend.performance.persist.Performance;
+import com.tickethub.backend.performance.dto.PerformanceDto;
+import com.tickethub.backend.performance.repository.PerformanceRepository;
+import com.tickethub.backend.performance.repository.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Slf4j
-public class PerformanceService {
+public class PerformanceServiceImpl implements PerformanceService{
 
     private final PerformanceRepository performanceRepository;
     private final SeatRepository seatRepository;

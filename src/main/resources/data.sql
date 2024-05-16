@@ -1,0 +1,2 @@
+insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트A', 100, now(), '출연진A', '서울시 00구', '/img/imgA.png');
+insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트B', 200, now(), '출연진B', '서울시 00구', '/img/imgB.png');

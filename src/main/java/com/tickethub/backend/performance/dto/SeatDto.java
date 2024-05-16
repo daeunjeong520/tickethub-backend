@@ -1,6 +1,6 @@
-package com.tickethub.backend.ticket.dto;
+package com.tickethub.backend.performance.dto;
 
-import com.tickethub.backend.ticket.domain.Seat;
+import com.tickethub.backend.performance.persist.Seat;
 import lombok.*;
 
 @Getter

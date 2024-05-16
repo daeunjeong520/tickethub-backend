@@ -4,7 +4,7 @@ pipeline {
     environment {
         //dockerHubRegistry = 'ccamm1/demo-eks-cicd'
         //dockerHubRegistryCredential = 'credential-dockerhub'
-        awsecrRegistry = '975049975608.dkr.ecr.ap-northeast-2.amazonaws.com/tickethub-backend'
+        awsecrRegistry = '814835082161.dkr.ecr.ap-northeast-2.amazonaws.com/tickethub-backend'
         awsecrRegistryCredential = 'credential-AWS-ECR'
 
         //배포
