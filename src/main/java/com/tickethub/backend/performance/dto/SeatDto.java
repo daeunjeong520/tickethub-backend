@@ -11,9 +11,12 @@ import lombok.*;
 public class SeatDto {
 
     private Long seatId;
-    private String seatType; // 좌석 타입 (R, S)
-    private Integer totalSeat; // 좌석 총 개수
-    private Integer price; // 좌석 가격
+    private String seatType;
+    private Integer totalSeat;
+    private Integer price;
+    private Integer seatLimit;
+
+    private PerformanceDto performanceDto; // 공연 정보
 
     public static SeatDto from(SeatEntity seat) {
         return SeatDto.builder()
@@ -21,6 +24,8 @@ public class SeatDto {
                 .seatType(seat.getSeatType())
                 .totalSeat(seat.getTotalSeat())
                 .price(seat.getPrice())
+                .seatLimit(seat.getSeatLimit())
+                .performanceDto(PerformanceDto.from(seat.getPerformance()))
                 .build();
     }
 }

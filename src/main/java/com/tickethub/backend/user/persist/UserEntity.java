@@ -1,9 +1,13 @@
 package com.tickethub.backend.user.persist;
 
+import com.tickethub.backend.book.persist.BookEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.awt.print.Book;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,4 +30,7 @@ public class UserEntity implements Serializable {
     @Setter
     @Column(name = "encrypted_pwd", nullable = false, unique = true)
     private String encryptedPwd;
+
+    @OneToMany(mappedBy = "userEntity")
+    private List<BookEntity> books = new ArrayList<>();
 }

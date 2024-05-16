@@ -2,8 +2,8 @@ package com.tickethub.backend.performance.service;
 
 import com.tickethub.backend.performance.persist.PerformanceEntity;
 import com.tickethub.backend.performance.dto.PerformanceDto;
-import com.tickethub.backend.performance.repository.PerformanceRepository;
-import com.tickethub.backend.performance.repository.SeatRepository;
+import com.tickethub.backend.performance.persist.PerformanceRepository;
+import com.tickethub.backend.performance.persist.SeatRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

@@ -16,6 +16,7 @@ public class ResponseSeat {
     private String seatType;
     private Integer totalSeat;
     private Integer price;
+    private Integer seatLimit;
 
     // dto -> response
     public static ResponseSeat fromDto(SeatDto seatDto) {
@@ -24,6 +25,7 @@ public class ResponseSeat {
                 .seatType(seatDto.getSeatType())
                 .totalSeat(seatDto.getTotalSeat())
                 .price(seatDto.getPrice())
+                .seatLimit(seatDto.getSeatLimit())
                 .build();
     }
 }

@@ -8,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -20,10 +22,7 @@ public class AuthorizationHeaderFilter extends OncePerRequestFilter {
     public static final String TOKEN_PREFIX = "Bearer ";
 
     private Environment env;
-
-    public AuthorizationHeaderFilter() {
-
-    }
+    private AuthenticationFilter authenticationFilter;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -33,6 +32,9 @@ public class AuthorizationHeaderFilter extends OncePerRequestFilter {
         if(!isTokenValid(token)) {
             throw new JwtException("JWT token is not valid");
         }
+
+        Authentication auth = authenticationFilter.attemptAuthentication(request, response);
+        SecurityContextHolder.getContext().setAuthentication(auth);
 
         filterChain.doFilter(request, response);
     }
