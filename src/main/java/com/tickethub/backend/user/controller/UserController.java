@@ -4,6 +4,9 @@ import com.tickethub.backend.user.jwt.JWTUtil;
 import com.tickethub.backend.user.service.UserService;
 import com.tickethub.backend.user.vo.RequestUser;
 import com.tickethub.backend.user.vo.ResponseUser;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +48,16 @@ public class UserController {
         }
 
         return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity logout(HttpServletResponse res) {
+        Cookie cookie = new Cookie("token", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+
+        res.addCookie(cookie);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     // 회원 단건 조회
