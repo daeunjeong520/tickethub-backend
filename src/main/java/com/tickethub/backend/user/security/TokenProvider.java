@@ -29,11 +29,11 @@ public class TokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    public String generateToken(String username, List<String> roles) {
+    public String generateToken(Long id, List<String> roles) {
         log.info("[createToken] 토큰 생성 시작");
 
         // claim - sub
-        Claims claims = Jwts.claims().setSubject(username);
+        Claims claims = Jwts.claims().setSubject(id.toString());
         claims.put(KEY_ROLES, roles);
 
         // claim - exp
@@ -68,7 +68,7 @@ public class TokenProvider {
         return !claims.getExpiration().before(new Date());
     }
 
-    private Claims parseClaims(String token) {
+    public Claims parseClaims(String token) {
         try {
             return Jwts.parser().setSigningKey(this.secretKey).parseClaimsJws(token).getBody();
 
