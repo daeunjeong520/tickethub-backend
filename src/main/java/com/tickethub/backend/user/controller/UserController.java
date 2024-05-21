@@ -1,5 +1,6 @@
 package com.tickethub.backend.user.controller;
 
+import com.tickethub.backend.user.jwt.JWTUtil;
 import com.tickethub.backend.user.service.UserService;
 import com.tickethub.backend.user.vo.RequestUser;
 import com.tickethub.backend.user.vo.ResponseUser;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final JWTUtil jwtUtil;
 
     // 회원가입
     @PostMapping("/signup")
@@ -28,6 +30,21 @@ public class UserController {
                                 )
                         )
                 );
+    }
+
+    // check
+    @GetMapping("/check")
+    public ResponseEntity check(@CookieValue(value = "token", required = false) String token) {
+
+        if(token != null) {
+            String username = jwtUtil.getUsername(token);
+
+            if(username != null) {
+                return new ResponseEntity<>(username, HttpStatus.OK);
+            }
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     // 회원 단건 조회
