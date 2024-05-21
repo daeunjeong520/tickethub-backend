@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.tickethub.backend.user.dto.UserDto;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class ResponseUser {
     private String email;
     private String username;
     private Long userId;
+    private List<String> roles;
 
     // dto -> response
     public static ResponseUser fromDto(UserDto userDto) {
@@ -22,6 +25,7 @@ public class ResponseUser {
                 .email(userDto.getEmail())
                 .username(userDto.getUsername())
                 .userId(userDto.getUserId())
+                .roles(userDto.getRoles())
                 .build();
     }
 }

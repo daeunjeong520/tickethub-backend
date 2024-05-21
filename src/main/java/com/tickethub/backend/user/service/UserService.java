@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface UserService extends UserDetailsService{
 
-    UserDto createUser(String email, String username, String pwd);
+    UserDto createUser(String email, String username, String pwd, List<String> roles);
+    UserDto loginUser(String email, String password);
 
     UserDto getUserByUserId(Long userId);
     List<UserDto> getUserByAll();

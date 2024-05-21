@@ -16,7 +16,7 @@ public class SeatDto {
     private Integer price;
     private Integer seatLimit;
 
-    private PerformanceDto performanceDto; // 공연 정보
+    //private PerformanceDto performanceDto; // 공연 정보
 
     public static SeatDto from(SeatEntity seat) {
         return SeatDto.builder()
@@ -25,7 +25,7 @@ public class SeatDto {
                 .totalSeat(seat.getTotalSeat())
                 .price(seat.getPrice())
                 .seatLimit(seat.getSeatLimit())
-                .performanceDto(PerformanceDto.from(seat.getPerformance()))
+      //          .performanceDto(PerformanceDto.from(seat.getPerformanceEntity()))
                 .build();
     }
 }

@@ -1,12 +1,11 @@
 package com.tickethub.backend.performance.persist;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -14,15 +13,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Table(name = "seat")
-public class SeatEntity implements Serializable {
+public class SeatEntity{
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seat_id")
     private Long seatId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "performance_id")
-    private PerformanceEntity performance;
+    private PerformanceEntity performanceEntity;
 
     @Column(name = "seat_type", nullable = false)
     private String seatType; // 좌석 타입 (R, S)
@@ -35,6 +35,7 @@ public class SeatEntity implements Serializable {
 
     @Column(nullable = false)
     private Integer seatLimit; // 좌석 수 제한 개수
+
 
     // 좌석 예매 (좌석 수 차감)
     public void decreaseSeat(int seatNum) {

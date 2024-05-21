@@ -14,14 +14,14 @@ public class ResponseBook {
 
     private Long bookId;
     private Long userId;
-    private ResponsePerformance responsePerformance;
+    //private ResponsePerformance responsePerformance;
     private ResponseSeat responseSeat;
 
     public static ResponseBook fromDto(BookDto bookDto) {
         return ResponseBook.builder()
                 .bookId(bookDto.getBookId())
                 .userId(bookDto.getUserDto().getUserId())
-                .responsePerformance(ResponsePerformance.fromDto(bookDto.getSeatDto().getPerformanceDto()))
+                //.responsePerformance(ResponsePerformance.fromDto(bookDto.getSeatDto().getPerformanceDto()))
                 .responseSeat(ResponseSeat.fromDto(bookDto.getSeatDto()))
                 .build();
     }

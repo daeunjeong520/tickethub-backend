@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,29 +22,50 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(email));
-        return new User(userEntity.getEmail(), userEntity.getEncryptedPwd(),
-                true, true, true, true, new ArrayList<>());
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 
-    // 회원가입
+    /**
+     * 회원가입
+     */
     @Transactional
     @Override
-    public UserDto createUser(String email, String username, String pwd) {
+    public UserDto createUser(String email, String username, String pwd, List<String> roles) {
+        boolean exists = userRepository.existsByEmail(email);
+        if(exists) {
+            throw new IllegalStateException("Duplicate email");
+        }
+
         UserEntity userEntity = UserEntity.builder()
                 .username(username)
                 .email(email)
                 .encryptedPwd(passwordEncoder.encode(pwd)) // password encode
+                .roles(roles)
                 .build();
 
-        // user save
-        UserEntity savedUser = userRepository.save(userEntity);
-        return UserDto.from(savedUser);
+        // 회원가입
+        return UserDto.from(userRepository.save(userEntity));
+    }
+
+    /**
+     * 로그인
+     */
+    @Transactional
+    @Override
+    public UserDto loginUser(String email, String password) {
+        // 패스워드 검증
+        UserEntity userEntity = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalStateException("User not found"));
+
+        if(!passwordEncoder.matches(password, userEntity.getPassword())) {
+            throw new IllegalStateException("Invalid password");
+        }
+        return UserDto.from(userEntity);
     }
 
     // 유저 조회(by userId)

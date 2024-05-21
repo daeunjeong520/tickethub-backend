@@ -1,9 +1,11 @@
 package com.tickethub.backend.user.vo;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,5 +25,7 @@ public class RequestUser {
 
     @NotNull(message = "Password cannot be null")
     @Size(min = 8, message = "Password must be equal or greater than eight characters")
-    private String pwd;
+    private String password;
+
+    private List<String> roles;
 }

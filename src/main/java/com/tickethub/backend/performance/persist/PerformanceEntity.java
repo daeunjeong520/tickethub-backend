@@ -1,12 +1,11 @@
 package com.tickethub.backend.performance.persist;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,10 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Table(name = "performance")
-public class PerformanceEntity implements Serializable {
+public class PerformanceEntity{
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "performance_id")
     private Long performanceId;
 
@@ -41,6 +41,6 @@ public class PerformanceEntity implements Serializable {
     @Column(name = "poster_path", nullable = false)
     private String posterPath;       // 이미지 경로
 
-    @OneToMany(mappedBy = "performance")
+    @OneToMany(mappedBy = "performanceEntity")
     private List<SeatEntity> seats = new ArrayList<>();
 }
