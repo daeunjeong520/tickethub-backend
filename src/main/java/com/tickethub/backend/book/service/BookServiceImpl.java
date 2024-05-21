@@ -75,7 +75,7 @@ public class BookServiceImpl implements BookService{
     // 유저 확인
     private UserEntity validateUser() {
         UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return userRepository.findByEmail(userEntity.getEmail())
+        return userRepository.findByUsername(userEntity.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("User Not Found"));
     }
 }

@@ -1,16 +1,14 @@
 package com.tickethub.backend.user.persist;
 
 import com.tickethub.backend.book.persist.BookEntity;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -18,57 +16,22 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Builder
 @Table(name = "users")
-public class UserEntity implements UserDetails {
+public class UserEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name="username", nullable = false, length = 50)
+    @Column(name="username", nullable = false, length = 50, unique = true)
     private String username;
 
-    @Column(name="email", nullable = false, length = 50, unique = true)
-    private String email;
-
-    @Column(name="encrypted_pwd", nullable = false, length = 20)
+    @Column(name="encrypted_pwd", nullable = false)
     private String encryptedPwd;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Builder.Default
-    private List<String> roles = new ArrayList<>();
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles.stream().map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
-    }
+    @Column(name = "role", nullable = false)
+    private String role;
 
     @OneToMany(mappedBy = "userEntity")
     private List<BookEntity> books = new ArrayList<>();
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.getEncryptedPwd();
-    }
 }

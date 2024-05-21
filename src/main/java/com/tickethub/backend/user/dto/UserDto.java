@@ -15,15 +15,14 @@ public class UserDto {
     private Long userId;
     private String username;
     private String email;
-    private List<String> roles;
+    private String role;
 
     // entity -> dto
     public static UserDto from(UserEntity user) {
         return UserDto.builder()
                 .userId(user.getUserId())
                 .username(user.getUsername())
-                .email(user.getEmail())
-                .roles(user.getRoles())
+                .role(user.getRole())
                 .build();
     }
 }
