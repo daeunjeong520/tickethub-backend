@@ -29,4 +29,10 @@ public class BookEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seat_id")
     private SeatEntity seatEntity; // 좌석
+
+    @Column(name = "book_seat_num")
+    private Integer bookSeatNum; // 예매한 좌석 수
+
+    @Column(name = "book_price")
+    private Integer bookPrice; // 결제 가격
 }

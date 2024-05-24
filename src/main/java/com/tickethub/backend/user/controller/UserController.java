@@ -5,13 +5,14 @@ import com.tickethub.backend.user.service.UserService;
 import com.tickethub.backend.user.vo.RequestUser;
 import com.tickethub.backend.user.vo.ResponseUser;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
@@ -23,6 +24,9 @@ public class UserController {
     // 회원가입
     @PostMapping("/signup")
     public ResponseEntity<ResponseUser> signup(@RequestBody RequestUser requestUser) {
+
+        log.info("========== signup =============");
+
         return ResponseEntity.status(HttpStatus.OK)
                 .body(
                         ResponseUser.fromDto(
@@ -34,6 +38,7 @@ public class UserController {
                         )
                 );
     }
+
 
     // check
     @GetMapping("/check")

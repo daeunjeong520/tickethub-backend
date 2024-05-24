@@ -1,7 +1,6 @@
 package com.tickethub.backend.performance.controller;
 
 import com.tickethub.backend.performance.service.PerformanceService;
-import com.tickethub.backend.performance.service.PerformanceServiceImpl;
 import com.tickethub.backend.performance.vo.ResponsePerformance;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

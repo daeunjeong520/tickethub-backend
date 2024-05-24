@@ -1,9 +1,11 @@
 package com.tickethub.backend.book.vo;
 
 import com.tickethub.backend.book.dto.BookDto;
-import com.tickethub.backend.performance.vo.ResponsePerformance;
-import com.tickethub.backend.performance.vo.ResponseSeat;
+import com.tickethub.backend.performance.dto.SeatDto;
+import com.tickethub.backend.user.dto.UserDto;
 import lombok.*;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -12,17 +14,41 @@ import lombok.*;
 @Builder
 public class ResponseBook {
 
-    private Long bookId;
-    private Long userId;
-    //private ResponsePerformance responsePerformance;
-    private ResponseSeat responseSeat;
+    // 좌석 정보
+    private Long seatId;
+    private String seatType;
+
+    // 공연 정보
+    private String performanceName;  // 공연이름
+    private Integer viewingHours;    // 관람시간
+    private LocalDate date;          // 공연 날짜
+    private String cast;             // 출연진
+    private String location;         // 장소
+    private String posterPath;       // 공연 이미지
+
+    // 예약 정보
+    private String username;        // 예약자 이름
+    private Long bookId;            // 예약 아이디
+    private Integer bookSeatNum;    // 개수
+    private Integer bookPrice;      // 전체 결제 가격
 
     public static ResponseBook fromDto(BookDto bookDto) {
+        UserDto userDto = bookDto.getUserDto();
+        SeatDto seatDto = bookDto.getSeatDto();
+
         return ResponseBook.builder()
+                .seatId(seatDto.getSeatId())
+                .seatType(seatDto.getSeatType())
+                .performanceName(seatDto.getPerformanceName())
+                .viewingHours(seatDto.getViewingHours())
+                .date(seatDto.getDate())
+                .cast(seatDto.getCast())
+                .location(seatDto.getLocation())
+                .posterPath(seatDto.getPosterPath())
+                .username(userDto.getUsername())
                 .bookId(bookDto.getBookId())
-                .userId(bookDto.getUserDto().getUserId())
-                //.responsePerformance(ResponsePerformance.fromDto(bookDto.getSeatDto().getPerformanceDto()))
-                .responseSeat(ResponseSeat.fromDto(bookDto.getSeatDto()))
+                .bookSeatNum(bookDto.getBookSeatNum())
+                .bookPrice(bookDto.getBookPrice())
                 .build();
     }
 }

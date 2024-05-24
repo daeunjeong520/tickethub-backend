@@ -8,13 +8,14 @@ import com.tickethub.backend.performance.persist.SeatRepository;
 import com.tickethub.backend.user.persist.UserEntity;
 import com.tickethub.backend.user.persist.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -26,9 +27,9 @@ public class BookServiceImpl implements BookService{
 
     @Transactional
     @Override
-    public BookDto createBook(Long seatId, Integer seatNum) {
+    public BookDto createBook(Long seatId, Integer seatNum, String username) {
         // 유저 조회
-        UserEntity userEntity = validateUser();
+        UserEntity userEntity = validateUser(username);
 
         // 남은 좌석 조회
         SeatEntity seatEntity = seatRepository.findById(seatId)
@@ -41,20 +42,27 @@ public class BookServiceImpl implements BookService{
         // 좌석 예약 시 좌석 수 차감
         seatEntity.decreaseSeat(seatNum);
 
-        // 예약 저장
-        BookEntity bookEntity = BookEntity.builder()
-                .userEntity(userEntity)
-                .seatEntity(seatEntity)
-                .build();
+        // 결제 금액
+        Integer bookPrice = seatNum * seatEntity.getPrice();
 
-        bookRepository.save(bookEntity);
-        return BookDto.from(bookEntity);
+        // 예약 저장
+        return BookDto.from(
+                bookRepository.save(
+                        BookEntity.builder()
+                                .userEntity(userEntity)
+                                .seatEntity(seatEntity)
+                                .bookSeatNum(seatNum)
+                                .bookPrice(bookPrice)
+                                .build()
+                )
+        );
     }
 
     // 유저 - 예매 목록 조회
     @Override
-    public List<BookDto> getBookList() {
-        UserEntity userEntity = validateUser();
+    public List<BookDto> getBookList(String username) {
+        UserEntity userEntity = validateUser(username);
+
         return userEntity.getBooks()
                 .stream()
                 .map(BookDto::from)
@@ -63,8 +71,8 @@ public class BookServiceImpl implements BookService{
 
     // 유저 - 예매 상세 조회
     @Override
-    public BookDto getBook(Long bookId) {
-        validateUser();
+    public BookDto getBook(Long bookId, String username) {
+        validateUser(username);
 
         BookEntity bookEntity = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("Book Not Found"));
@@ -73,9 +81,8 @@ public class BookServiceImpl implements BookService{
     }
 
     // 유저 확인
-    private UserEntity validateUser() {
-        UserEntity userEntity = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return userRepository.findByUsername(userEntity.getUsername())
+    private UserEntity validateUser(String username) {
+        return userRepository.findByUsername(username)
                 .orElseThrow(() -> new IllegalArgumentException("User Not Found"));
     }
 }

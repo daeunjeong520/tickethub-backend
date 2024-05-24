@@ -1,5 +1,6 @@
 package com.tickethub.backend.performance.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tickethub.backend.performance.persist.PerformanceEntity;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class PerformanceDto {
     private String cast;             // 출연진
     private String location;         // 장소
     private String posterPath;       // 이미지 경로
+
     private List<SeatDto> seats;     // 좌석 정보
 
     // entity -> dto

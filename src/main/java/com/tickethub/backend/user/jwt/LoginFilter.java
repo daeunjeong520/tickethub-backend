@@ -35,26 +35,37 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
 
         RequestLogin requestLogin = new RequestLogin();
 
         try {
+
+            log.info("============== Authentication ================");
+
             ObjectMapper objectMapper = new ObjectMapper();
             ServletInputStream inputStream = request.getInputStream();
             String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
 
             requestLogin = objectMapper.readValue(messageBody, RequestLogin.class);
 
-        } catch (IOException e) {
+            log.info("username={}", requestLogin.getUsername());
+            log.info("password={}", requestLogin.getPassword());
+
+
+        }catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         String username = requestLogin.getUsername();
         String password = requestLogin.getPassword();
 
+        log.info("username={}", requestLogin.getUsername());
+        log.info("password={}", requestLogin.getPassword());
+
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
         return authenticationManager.authenticate(authToken); // authenticationManager가 검증
+
     }
 
     // 로그인 성공시 실행하는 메소드 (여기서 JWT 발급)
@@ -65,6 +76,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 
         String username = customUserDetails.getUsername(); // username
+        log.info("username={}", username);
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
@@ -72,12 +84,15 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         String role = auth.getAuthority(); // role
 
-        String token = jwtUtil.createJwt(username, role, 1000 * 60 * 5L);
+        String token = jwtUtil.createJwt(username, role, 6 * 60 * 60 * 1000L);
 
         // 쿠키 생성
         Cookie cookie = new Cookie("token", token);
         cookie.setHttpOnly(true);
         cookie.setPath("/");
+        cookie.setMaxAge(60 * 60); // 1시간
+
+        log.info("cookie.token={}" , cookie.getAttribute("token"));
 
         response.addCookie(cookie);
         response.addHeader("Authorization", "Bearer " + token);

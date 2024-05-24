@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 public class RequestBook {
 
-    private Long seatId;
-    private Integer seatNum;
+    private Long seatId; // 좌석 아이디
+    private Integer seatNum; // 좌석 개수
 }
