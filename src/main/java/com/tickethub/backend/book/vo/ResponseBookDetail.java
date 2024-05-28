@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 public class ResponseBookDetail {
 
+    private String category; // 카테고리
     private String performanceName;  // 공연이름
     private Integer viewingHours;    // 관람시간
     private LocalDate date;          // 공연 날짜
@@ -27,6 +28,7 @@ public class ResponseBookDetail {
         SeatDto seatDto = bookDto.getSeatDtos().get(0);
 
         return ResponseBookDetail.builder()
+                //.category()
                 .performanceName(seatDto.getPerformanceName())
                 .viewingHours(seatDto.getViewingHours())
                 .date(seatDto.getDate())

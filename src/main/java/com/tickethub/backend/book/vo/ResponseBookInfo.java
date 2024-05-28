@@ -15,6 +15,7 @@ import java.util.List;
 public class ResponseBookInfo {
 
     private Long bookId;                // 예약번호
+    private String category;            // 카테고리
     private String performanceName;     // 공연 이름
     private String cast;                // 출연진
     private List<String> seatNameList;  // 좌석 이름
@@ -30,6 +31,7 @@ public class ResponseBookInfo {
 
         return ResponseBookInfo.builder()
                 .bookId(bookDto.getBookId())
+                .category(bookDto.getSeatDtos().get(0).getCategory())
                 .performanceName(bookDto.getSeatDtos().get(0).getPerformanceName())
                 .cast(bookDto.getSeatDtos().get(0).getCast())
                 .seatNameList(seatNameList)

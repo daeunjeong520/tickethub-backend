@@ -19,6 +19,7 @@ public class SeatDto {
     private Boolean isBook;
 
     // 공연 정보
+    private String category;         // 카테고리
     private String performanceName;  // 공연이름
     private Integer viewingHours;    // 관람시간
     private LocalDate date;          // 공연 날짜
@@ -33,6 +34,7 @@ public class SeatDto {
                 .seatRow(seat.getSeatRow())
                 .seatCol(seat.getSeatCol())
                 .isBook(seat.getIsBook())
+                .category(seat.getPerformanceEntity().getCategory())
                 .performanceName(seat.getPerformanceEntity().getName())
                 .viewingHours(seat.getPerformanceEntity().getViewingHours())
                 .date(seat.getPerformanceEntity().getDate())
