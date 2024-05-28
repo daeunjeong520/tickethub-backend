@@ -2,6 +2,8 @@ package com.tickethub.backend.book.vo;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -9,6 +11,5 @@ import lombok.*;
 @Builder
 public class RequestBook {
 
-    private Long seatId; // 좌석 아이디
-    private Integer seatNum; // 좌석 개수
+    private List<Long> seatIdList;
 }

@@ -41,6 +41,8 @@ public class PerformanceEntity{
     @Column(name = "poster_path", nullable = false)
     private String posterPath;       // 이미지 경로
 
+    // 추가
+
     @OneToMany(mappedBy = "performanceEntity")
     private List<SeatEntity> seats = new ArrayList<>();
 }

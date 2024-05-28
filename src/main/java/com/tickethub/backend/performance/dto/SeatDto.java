@@ -13,10 +13,10 @@ import java.time.LocalDate;
 public class SeatDto {
 
     private Long seatId;
-    private String seatType;
-    private Integer totalSeat;
     private Integer price;
-    private Integer seatLimit;
+    private String seatRow;
+    private String seatCol;
+    private Boolean isBook;
 
     // 공연 정보
     private String performanceName;  // 공연이름
@@ -29,10 +29,10 @@ public class SeatDto {
     public static SeatDto from(SeatEntity seat) {
         return SeatDto.builder()
                 .seatId(seat.getSeatId())
-                .seatType(seat.getSeatType())
-                .totalSeat(seat.getTotalSeat())
                 .price(seat.getPrice())
-                .seatLimit(seat.getSeatLimit())
+                .seatRow(seat.getSeatRow())
+                .seatCol(seat.getSeatCol())
+                .isBook(seat.getIsBook())
                 .performanceName(seat.getPerformanceEntity().getName())
                 .viewingHours(seat.getPerformanceEntity().getViewingHours())
                 .date(seat.getPerformanceEntity().getDate())

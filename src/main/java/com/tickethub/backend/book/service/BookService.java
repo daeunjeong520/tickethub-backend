@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
 
-    BookDto createBook(Long seatId, Integer seatNum, String username); // 예매
+    BookDto createBook(List<Long> seatIdList, String username); // 예매
     List<BookDto> getBookList(String username); // 유저 - 예매 목록 전체 조회
     BookDto getBook(Long bookId, String username); // 예매 상세 조회
 }

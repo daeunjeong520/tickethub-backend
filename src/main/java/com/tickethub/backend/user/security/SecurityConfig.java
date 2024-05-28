@@ -54,7 +54,8 @@ public class SecurityConfig {
                         public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                             CorsConfiguration configuration = new CorsConfiguration();
 
-                            configuration.setAllowedOrigins(Collections.singletonList("http://k8s-default-prodingr-fc22219cb1-577453725.ap-northeast-2.elb.amazonaws.com"));
+                            //configuration.setAllowedOrigins(Collections.singletonList("http://k8s-default-prodingr-fc22219cb1-577453725.ap-northeast-2.elb.amazonaws.com"));
+                            configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000"));
                             configuration.setAllowedMethods(Collections.singletonList("*"));
                             configuration.setAllowCredentials(true);
                             configuration.setAllowedHeaders(Collections.singletonList("*"));

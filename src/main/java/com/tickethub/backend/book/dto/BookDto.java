@@ -5,6 +5,9 @@ import com.tickethub.backend.performance.dto.SeatDto;
 import com.tickethub.backend.user.dto.UserDto;
 import lombok.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,18 +17,20 @@ public class BookDto {
 
     private Long bookId;
     private UserDto userDto;
-    private SeatDto seatDto;
-
-    private Integer bookSeatNum;
-    private Integer bookPrice;
+    private List<SeatDto> seatDtos;
+    private Integer totalPrice;
 
     public static BookDto from(BookEntity bookEntity) {
         return BookDto.builder()
                 .bookId(bookEntity.getBookId())
                 .userDto(UserDto.from(bookEntity.getUserEntity()))
-                .seatDto(SeatDto.from(bookEntity.getSeatEntity()))
-                .bookSeatNum(bookEntity.getBookSeatNum())
-                .bookPrice(bookEntity.getBookPrice())
+                .seatDtos(
+                        bookEntity.getSeatEntities()
+                        .stream()
+                        .map(SeatDto::from)
+                        .collect(Collectors.toList())
+                )
+                .totalPrice(bookEntity.getTotalPrice())
                 .build();
     }
 }

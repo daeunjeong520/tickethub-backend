@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,35 +28,43 @@ public class BookServiceImpl implements BookService{
 
     @Transactional
     @Override
-    public BookDto createBook(Long seatId, Integer seatNum, String username) {
+    public BookDto createBook(List<Long> seatIdList, String username) {
+
         // 유저 조회
         UserEntity userEntity = validateUser(username);
+        List<SeatEntity> seatEntities = new ArrayList<>();
+        int totalPrice = 0;
 
-        // 남은 좌석 조회
-        SeatEntity seatEntity = seatRepository.findById(seatId)
-                .orElseThrow(() -> new IllegalArgumentException("Seat Not Found"));
+        // 좌석 조회 및 상태 변경
+        for(Long seatId: seatIdList) {
+            SeatEntity seatEntity = seatRepository.findById(seatId)
+                    .orElseThrow(() -> new IllegalStateException("Seat Not Found"));
 
-        if(seatEntity.getTotalSeat() == 0) {
-            throw new IllegalStateException("There are no seats left");
+            if(seatEntity.getIsBook()) {
+                throw new IllegalStateException("이미 예약된 좌석입니다");
+            }
+            seatEntity.setIsBook(true);
+            totalPrice += seatEntity.getPrice();
+            seatEntities.add(seatEntity);
         }
 
-        // 좌석 예약 시 좌석 수 차감
-        seatEntity.decreaseSeat(seatNum);
 
-        // 결제 금액
-        Integer bookPrice = seatNum * seatEntity.getPrice();
+        // 예약 생성
+        BookEntity bookEntity = BookEntity
+                .builder()
+                .userEntity(userEntity)
+                .seatEntities(seatEntities)
+                .totalPrice(totalPrice)
+                .build();
 
         // 예약 저장
-        return BookDto.from(
-                bookRepository.save(
-                        BookEntity.builder()
-                                .userEntity(userEntity)
-                                .seatEntity(seatEntity)
-                                .bookSeatNum(seatNum)
-                                .bookPrice(bookPrice)
-                                .build()
-                )
-        );
+        bookRepository.save(bookEntity);
+
+        for(SeatEntity seatEntity: seatEntities) {
+            seatEntity.changeBookEntity(bookEntity);
+        }
+
+        return BookDto.from(bookEntity);
     }
 
     // 유저 - 예매 목록 조회

@@ -1,14 +1,12 @@
 package com.tickethub.backend.book.controller;
 
+import com.tickethub.backend.book.dto.BookDto;
 import com.tickethub.backend.book.service.BookService;
-import com.tickethub.backend.book.vo.RequestBook;
-import com.tickethub.backend.book.vo.ResponseBook;
+import com.tickethub.backend.book.vo.ResponseBookDetail;
 import com.tickethub.backend.book.vo.ResponseBookInfo;
 import com.tickethub.backend.user.jwt.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,52 +23,39 @@ public class BookController {
 
     // 예매
     @PostMapping
-    public ResponseEntity<ResponseBookInfo> createBook(
-            @CookieValue(value = "token") String token,
-            @RequestBody RequestBook requestBook) {
+    public BookDto createBook(
+            @CookieValue("token") String token,
+            @RequestBody List<Long> seatIdList) {
 
         String username = jwtUtil.getUsername(token);
 
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(
-                        ResponseBookInfo.fromDto(
-                                bookService.createBook(
-                                        requestBook.getSeatId(),
-                                        requestBook.getSeatNum(),
-                                        username
-                                )
-                        )
-                );
+        log.info("seatIdList={}", seatIdList);
+
+        return bookService.createBook(seatIdList, username);
     }
 
-    // 예매 목록 조회
+    // 예매 내역 전체 조회
     @GetMapping
-    public ResponseEntity<List<ResponseBookInfo>> getBookList(
-            @CookieValue(value = "token") String token
+    public List<ResponseBookInfo> getAllBook(
+            @CookieValue("token") String token
     ) {
-
         String username = jwtUtil.getUsername(token);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(
-                        bookService.getBookList(username)
-                                .stream()
-                                .map(ResponseBookInfo::fromDto)
-                                .collect(Collectors.toList())
-                );
+        return bookService.getBookList(username)
+                .stream()
+                .map(ResponseBookInfo::fromDto)
+                .collect(Collectors.toList());
     }
 
-    // 예매 단건 조회
+    // 예매 내역 자세히 조회
     @GetMapping("/{bookId}")
-    public ResponseEntity<ResponseBook> getBook(
-            @PathVariable(name = "bookId") Long bookId,
-            @CookieValue(value = "token") String token
+    public ResponseBookDetail getBook(
+            @PathVariable("bookId") Long bookId,
+            @CookieValue("token") String token
     ) {
         String username = jwtUtil.getUsername(token);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(
-                        ResponseBook.fromDto(
-                                bookService.getBook(bookId, username)
-                        )
-                );
+
+        return ResponseBookDetail.fromDto(
+                bookService.getBook(bookId, username)
+        );
     }
 }

@@ -13,19 +13,20 @@ import lombok.*;
 public class ResponseSeat {
 
     private Long seatId;
-    private String seatType;
-    private Integer totalSeat;
     private Integer price;
-    private Integer seatLimit;
+    private String seatRow;
+    private String seatCol;
+    private Boolean isBook;
+
 
     // dto -> response
     public static ResponseSeat fromDto(SeatDto seatDto) {
         return ResponseSeat.builder()
                 .seatId(seatDto.getSeatId())
-                .seatType(seatDto.getSeatType())
-                .totalSeat(seatDto.getTotalSeat())
                 .price(seatDto.getPrice())
-                .seatLimit(seatDto.getSeatLimit())
+                .seatRow(seatDto.getSeatRow())
+                .seatCol(seatDto.getSeatCol())
+                .isBook(seatDto.getIsBook())
                 .build();
     }
 }
