@@ -6,9 +6,9 @@ spring:
     name: tickethub-backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/tickethub_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: wjdekdms0814
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
   sql:
     init:
       mode: always
@@ -26,4 +26,4 @@ spring:
       dialect: org.hibernate.dialect.MySQL8InnoDBDialect
 
   jwt:
-    secret: lakufhwkuhfkjsdfhu2387yr73hr13o873878y374y1wlkugwkehsggiqlei8374679kuhwuefjswhehbneklcoufyyey38r949TERGTTAFSfskfgwelskjfgsfaghsullau2837ryhsd
+    secret: ${JWT}
