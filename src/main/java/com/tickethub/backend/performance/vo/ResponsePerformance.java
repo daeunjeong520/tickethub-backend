@@ -24,6 +24,7 @@ public class ResponsePerformance {
     private String cast;             // 출연진
     private String location;         // 장소
     private String posterPath;       // 이미지 경로
+    private String category;          // 카테고리
     private List<ResponseSeat> seats;  // 좌석 정보
 
     // dto -> response
@@ -36,6 +37,7 @@ public class ResponsePerformance {
                 .cast(performanceDto.getCast())
                 .location(performanceDto.getLocation())
                 .posterPath(performanceDto.getPosterPath())
+                .category(performanceDto.getCategory())
                 .seats(
                     performanceDto.getSeats()
                         .stream()

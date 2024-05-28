@@ -22,6 +22,7 @@ public class PerformanceDto {
     private String cast;             // 출연진
     private String location;         // 장소
     private String posterPath;       // 이미지 경로
+    private String category;         // 카테고리
 
     private List<SeatDto> seats;     // 좌석 정보
 
@@ -35,6 +36,7 @@ public class PerformanceDto {
                 .cast(performance.getCast())
                 .location(performance.getLocation())
                 .posterPath(performance.getPosterPath())
+                .category(performance.getCategory())
                 .seats(performance.getSeats()
                         .stream()
                         .map(SeatDto::from)

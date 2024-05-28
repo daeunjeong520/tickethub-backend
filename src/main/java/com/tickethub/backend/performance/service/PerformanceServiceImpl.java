@@ -36,4 +36,12 @@ public class PerformanceServiceImpl implements PerformanceService{
 
         return PerformanceDto.from(performance);
     }
+
+    // 공연 조회 - 카테고리
+    public List<PerformanceDto> searchByCategory(String category) {
+        return performanceRepository.findByCategory(category)
+                .stream()
+                .map(PerformanceDto::from)
+                .collect(Collectors.toList());
+    }
 }

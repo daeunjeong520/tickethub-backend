@@ -1,7 +1,7 @@
-insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트A', 100, now(), '출연진A', '서울시 00구', '/img/imgA.png');
-insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트B', 180, now(), '출연진B', '서울시 00구', '/img/imgB.png');
-insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트C', 120, now(), '출연진C', '서울시 00구', '/img/imgC.png');
-insert into performance(name, viewing_hours, date, cast, location, poster_path) values ('콘서트D', 60, now(), '출연진D', '서울시 00구', '/img/imgD.png');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('콘서트A', 100, now(), '출연진A', '서울시 00구', '/img/imgA.png', 'concert');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('콘서트B', 180, now(), '출연진B', '서울시 00구', '/img/imgB.png', 'concert');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('콘서트C', 120, now(), '출연진C', '서울시 00구', '/img/imgC.png', 'play');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('콘서트D', 60, now(), '출연진D', '서울시 00구', '/img/imgD.png', 'musical');
 
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (1, 'A', '0', 50000, false);
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (1, 'A', '1', 50000, false);

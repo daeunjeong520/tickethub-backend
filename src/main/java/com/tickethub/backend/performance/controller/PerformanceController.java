@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,5 +37,18 @@ public class PerformanceController {
         return ResponseEntity.status(HttpStatus.OK).body(
                 ResponsePerformance.fromDto(
                         performanceService.getPerformance(performanceId)));
+    }
+
+    // 공연 조회 - 카테고리
+    @GetMapping("/search")
+    public ResponseEntity<List<ResponsePerformance>> searchByCategory(
+            @RequestParam("category") String category
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                performanceService.searchByCategory(category)
+                .stream()
+                .map(ResponsePerformance::fromDto)
+                .collect(Collectors.toList())
+        );
     }
 }

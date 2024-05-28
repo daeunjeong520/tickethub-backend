@@ -7,4 +7,5 @@ import java.util.List;
 public interface PerformanceService {
     List<PerformanceDto> getAllPerformances();
     PerformanceDto getPerformance(Long performanceId);
+    List<PerformanceDto> searchByCategory(String category);
 }
