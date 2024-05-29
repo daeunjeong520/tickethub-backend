@@ -25,6 +25,10 @@ insert into performance(name, viewing_hours, date, cast, location, poster_path, 
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('백건우와 모차르트 - 서울', 90, '2024-06-11', '백건우', '예술의전당 콘서트홀', '/img/classic/imgD.png', 'classic');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('국립오페라단 <죽음의 도시>', 150, '2024-07-12', '-', '예술의전당 오페라극장', '/img/classic/imgE.png', 'classic');
 
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('뮤지컬 [하데스타운] 한국 공연', 155, '2024-07-12', '조형균,박강현 외', '샤롯데씨어터', '/img/event/imgA.png', 'event');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('뮤지컬 <헤드윅> - YES24DAY', 135, '2024-06-01', '조정석,전동석 외', '샤롯데씨어터', '/img/event/imgB.png', 'event');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('베어 더 뮤지컬 (bare the musical)', 165, '2024-08-25', '-', '두산아트센터 연강홀', '/img/event/imgC.png', 'event');
+
 
 
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (1, 'A', '0', 50000, false);
@@ -112,3 +116,33 @@ insert into seat(performance_id, seat_row, seat_col, price, is_book) values (2, 
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (2, 'F', '3', 60000, false);
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (2, 'F', '4', 60000, false);
 insert into seat(performance_id, seat_row, seat_col, price, is_book) values (2, 'F', '5', 60000, false);
+
+
+
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '0', 170000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '1', 170000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '2', 170000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '3', 170000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '4', 170000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'V', '5', 170000, true);
+
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '0', 140000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '1', 140000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '2', 140000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '3', 140000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '4', 140000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'R', '5', 140000, false);
+
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '0', 110000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '1', 110000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '2', 110000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '3', 110000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '4', 110000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'S', '5', 110000, false);
+
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '0', 80000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '1', 80000, true);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '2', 80000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '3', 80000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '4', 80000, false);
+insert into seat(performance_id, seat_row, seat_col, price, is_book) values (24, 'A', '5', 80000, false);

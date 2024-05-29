@@ -44,10 +44,17 @@ public class BookServiceImpl implements BookService{
                 throw new IllegalStateException("이미 예약된 좌석입니다");
             }
             seatEntity.setIsBook(true);
-            totalPrice += seatEntity.getPrice();
+
+
+            if(seatEntity.getPerformanceEntity().getName().contains("하데스타운")) {
+                totalPrice += seatEntity.getPrice() * 50 / 100;
+                seatEntity.setPrice(seatEntity.getPrice() * 50 / 100);
+
+            }else {
+                totalPrice += seatEntity.getPrice();
+            }
             seatEntities.add(seatEntity);
         }
-
 
         // 예약 생성
         BookEntity bookEntity = BookEntity

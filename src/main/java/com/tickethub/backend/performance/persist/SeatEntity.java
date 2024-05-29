@@ -28,6 +28,7 @@ public class SeatEntity{
     @Column(name = "seat_col")
     private String seatCol;
 
+    @Setter
     @Column(nullable = false)
     private Integer price; // 좌석 가격
 
