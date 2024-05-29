@@ -1,5 +1,5 @@
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('연극[너의 목소리가 들려]', 100, '2024-06-07', '-', '도토리씨어터', '/img/play/imgA.png', 'play');
-insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('뮤직드라마 <망원동 브라더스>', 100, '2024-06-05', '신정만,김동현 외', '인터파크 유니플렉스 3관', '/img/play/imgB.png', 'play');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('뮤직드라마 <망원동 브라더스>', 100, '2024-06-05', '신정만,김동현', '인터파크 유니플렉스 3관', '/img/play/imgB.png', 'play');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('연극 <연안지대 Littoral>', 120, '2024-06-30', '서울시극단', '세종문화회관 S씨어터', '/img/play/imgC.png', 'play');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('[대학로] 연극 [오백에삼십]', 100, '2024-06-25', '-', '대학로 JTN 아트홀 3관', '/img/play/imgD.png', 'play');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('연극 [행오버]', 90, '2024-05-31', '-', '정극장', '/img/play/imgE.png', 'play');
