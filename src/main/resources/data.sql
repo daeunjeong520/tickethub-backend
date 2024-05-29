@@ -10,7 +10,7 @@ insert into performance(name, viewing_hours, date, cast, location, poster_path, 
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('Live & Music Festival', 240, '2024-07-13', 'HANATAN, D.Watt 외', 'YES24 LIVE HALL', '/img/concert/imgC.png', 'concert');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('DAY6 3RD FANMEETING', 180, '2024-06-23', 'DAY6', '잠실실내체육관', '/img/concert/imgD.png', 'concert');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('[수원]2024 이찬원 콘서트 - 찬가', 120, '2024-07-28', '이찬원', '수원실내체육관', '/img/concert/imgE.png', 'concert');
-insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('ATEEZ 2024 FANMEETING', 150, '2024-07-07', 'ATEEZZ', '잠실실내체육관', '/img/concert/imgF.png', 'concert');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('ATEEZ 2024 FANMEETING', 150, '2024-07-07', 'ATEEZ', '잠실실내체육관', '/img/concert/imgF.png', 'concert');
 
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('이은결 연출 - 멜리에스 일루션', 80, '2024-11-09', '이은결', 'LG아트센터 서울 U+ 스테이지', '/img/musical/imgA.png', 'musical');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('밴드뮤지컬 머피 <Murphy>', 100, '2024-11-09', '조훈,신율철 외', '대학로 예그린씨어터', '/img/musical/imgB.png', 'musical');
