@@ -6,7 +6,7 @@ insert into performance(name, viewing_hours, date, cast, location, poster_path, 
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('연극 <빵야>', 170, '2024-09-08', '박성훈,박정원 외', '예스24아트원 1관', '/img/play/imgF.png', 'play');
 
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('2024 부산원아시아페스티벌', 120, '2024-06-08', 'god,슈퍼주니어 외', '부산아시아드주경기장', '/img/concert/imgA.png', 'concert');
-insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('ㅈㅂㅈ평일소공연(5월)', 60, '2024-05-30', '장범준', '예스24 원더로크홀', '/img/concert/imgB.png', 'concert');
+insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('ㅈㅂㅈ평일공연(5월)', 60, '2024-05-30', '장범준', '예스24 원더로크홀', '/img/concert/imgB.png', 'concert');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('Live & Music Festival', 240, '2024-07-13', 'HANATAN, D.Watt 외', 'YES24 LIVE HALL', '/img/concert/imgC.png', 'concert');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('DAY6 3RD FANMEETING', 180, '2024-06-23', 'DAY6', '잠실실내체육관', '/img/concert/imgD.png', 'concert');
 insert into performance(name, viewing_hours, date, cast, location, poster_path, category) values ('[수원]2024 이찬원 콘서트 - 찬가', 120, '2024-07-28', '이찬원', '수원실내체육관', '/img/concert/imgE.png', 'concert');
